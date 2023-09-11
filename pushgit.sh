@@ -2,6 +2,9 @@
 # where current script is located
 self_path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
+# adding pushgit.sh to your PATH environment variable
+#[[ ":$PATH:" != *":$self_path:"* ]] && echo "PATH=\"$self_path:${PATH}\"" >> $HOME/.profile && source $HOME/.profile
+
 # create sample config file, if none exists
 if [ ! -f $self_path/.pushgit.conf ]
 then
