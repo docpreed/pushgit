@@ -55,9 +55,6 @@ elif [ $# > 3 ]
     exit 0
 fi
 
-echo "repository: $repo_name commitmessage: $commit_message"
-echo "selfpath: $self_path"
-
 # check if the repo's directory exists in current folder on the local machine, otherwise clone it here
 if [ -d "$self_path/../$repo_name" ];
 then
