@@ -47,6 +47,12 @@ elif [ $# -eq 3 ]
     repo_name=$1
     commit_message=$2
     branch_name=$3
+elif [ $# > 3 ]
+  then
+    echo "You provided $# parameters, but expected are a maximum of 3."
+    echo "Probably your commit message was not enclosed between \"\""
+    echo "Exiting, please try again with \"[your commit message]\""
+    exit 0
 fi
 
 echo "repository: $repo_name commitmessage: $commit_message"
