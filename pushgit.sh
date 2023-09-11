@@ -10,14 +10,8 @@ then
     echo 'user="github_username"\nemail="github_email_address"\ntoken="github_access_token"' >> .pushgit.conf
 fi
 
-
 # sourcing the config file
 . $self_path/.pushgit.conf
-
-# removing last char from config variables
-#user=${user%?}
-#email=${email%?}
-#token=${token%?}
 
 # set user name and email in global config once
 if ! git config --list | grep -q $user; then
@@ -25,9 +19,31 @@ git config --global user.name "$user"
 git config --global user.email "$email"
 fi
 
-# enter repo's name
-echo 'Please specify the repositories name:'
-read repo_name
+# if repositorie's name is provided as initial parameter
+if [ $# -eq 0 ]
+  then
+    # enter repo's name
+    echo 'Please specify the repositories name:'
+    read repo_name
+
+    # specify a commit message
+    echo 'Enter the commit message:'
+    read commit_message
+elif [ $# -eq 1 ]
+  then
+    repo_name=$1
+
+    # specify a commit message
+    echo 'Enter the commit message:'
+    read commit_message
+elif [ $# -eq 2 ]
+  then
+    repo_name=$1
+    commit_message=$2
+fi
+
+echo "repository: $repo_name commitmessage: $commit_message"
+echo "selfpath: $self_path"
 
 # check if the repo's directory exists in current folder on the local machine, otherwise clone it here
 if [ -d "$self_path/../$repo_name" ];
@@ -35,7 +51,7 @@ then
     echo "Target directory $repo_name already exists, skipping initial clone"
 else
     echo "Cloning repo $repo_name into target directory $(pwd)/$repo_name"
-    cd $self_path/..
+    cd $self_path/../
     git clone https://$user:$token@github.com/$user/$repo_name.git
 fi
 
@@ -46,10 +62,7 @@ cd $self_path/../$repo_name
 git add .
 git add ./*
 
-# specify a commit message
-echo 'Enter the commit message:'
-read commitMessage
-git commit -m "$commitMessage"
+git commit -m "$commit_message"
 
 # echo 'Enter branch name:'
 # read branch
