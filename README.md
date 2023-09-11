@@ -15,6 +15,6 @@ That means when you clone it into /home/(user name)/git/ and thereby creating /h
 So you could just add it to your $PATH and call it from anywhere, if wanted.
 
 Usage:
-pushgit [repository name] "[commit message]" "[branch name]"
+$pushgit [repository name] "[commit message]" "[branch name]"
 If arguments are provided, the first argument is treated as the repositorie's name and the second one ist used as the commit message (don't forget to enclose it between "", otherwise every word will be treated as an argument), whereas the third one can be supplied as a branch name, if not using main branch.
 If no arguments are provided, they will be saked for by the script.
