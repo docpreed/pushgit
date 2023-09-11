@@ -1,5 +1,5 @@
 # pushgit
-Helper script to make git commits easier, especially on a new system.
+Helper script to make git commits to (private) repositories easier, especially on a new system.
 It does the following:
 - creates a sample config file named .pushgit.conf in the directory where the script is located.
 - reads github userdata from config file
