@@ -40,6 +40,11 @@ elif [ $# -eq 2 ]
   then
     repo_name=$1
     commit_message=$2
+elif [ $# -eq 3 ]
+  then
+    repo_name=$1
+    commit_message=$2
+    branch_name=$3
 fi
 
 echo "repository: $repo_name commitmessage: $commit_message"
@@ -64,10 +69,13 @@ git add ./*
 
 git commit -m "$commit_message"
 
-# echo 'Enter branch name:'
-# read branch
+if [ -z "$branch_name" ]
+  then
+    echo "No branch name specified, using \"main\""
+    branch_name="main"
+fi
 
 # commit repo's local directory to github
 URL="https://${user}:${token}@github.com/${user}/${repo_name}.git"
 
-git push "${URL}" main #branch
+git push "${URL}" branch_name
