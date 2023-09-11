@@ -74,7 +74,7 @@ git commit -m "$commit_message"
 if [ -z "$branch_name" ]
   then
     echo "No branch name specified, using \"main\""
-    branch_name="main"
+    branch_name='main'
 fi
 
 # commit repo's local directory to github
