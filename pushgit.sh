@@ -73,11 +73,11 @@ git commit -m "$commit_message"
 
 if [ -z "$branch_name" ]
   then
-    echo "No branch name specified, using \"main\""
-    branch_name='main'
+    echo "No branch name specified, using \"main\" branch"
+    branch_name="main"
 fi
 
 # commit repo's local directory to github
 URL="https://${user}:${token}@github.com/${user}/${repo_name}.git"
 
-git push "${URL}" branch_name
+git push "${URL}" "$branch_name"
