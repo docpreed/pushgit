@@ -24,8 +24,8 @@ branch_name=''
 # if repositorie's name is provided as initial parameter
 if [ $# -eq 0 ]
   then
-    # enter repo's name
-    echo 'Please specify the repositories name:'
+    # specify repo's name
+    echo 'Please enter the repositories name:'
     read repo_name
 
     # specify a commit message
@@ -75,15 +75,25 @@ cd $self_path/../$repo_name
 git add .
 git add ./*
 
-git commit -m "$commit_message"
-
 if [ -z "$branch_name" ]
   then
     echo "No branch name specified, using \"main\" branch"
     branch_name="main"
 fi
 
-# commit repo's local directory to github
-URL="https://${user}:${token}@github.com/${user}/${repo_name}.git"
+if [ -z "$token" ]
+  then
+    echo "No token specified!"
+    echo "When you try pushing to a private repository"
+    echo "you have to provide an access token in .pushgit.conf"
+    token_var=""
+else
+    token_var=":$token"
+fi
 
+# use commit message
+git commit -m "$commit_message"
+
+# commit repo's local directory to github
+URL="https://${user}${token_var}@github.com/${user}/${repo_name}.git"
 git push "${URL}" "$branch_name"
