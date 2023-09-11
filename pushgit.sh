@@ -31,6 +31,10 @@ if [ $# -eq 0 ]
     # specify a commit message
     echo 'Enter the commit message:'
     read commit_message
+
+     # specify a branch name
+    echo 'Optionally enter the branch name (default:\"main\"):'
+    read branch_name
 elif [ $# -eq 1 ]
   then
     repo_name=$1
