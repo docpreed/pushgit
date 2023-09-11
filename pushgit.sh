@@ -19,6 +19,8 @@ git config --global user.name "$user"
 git config --global user.email "$email"
 fi
 
+branch_name=''
+
 # if repositorie's name is provided as initial parameter
 if [ $# -eq 0 ]
   then
