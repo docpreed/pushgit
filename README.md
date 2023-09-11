@@ -15,6 +15,7 @@ So you could just add it to your $PATH and call it from anywhere, if wanted.
 
 Usage:
 - >pushgit [repository name] "[commit message]" "[branch name]"
-- e.g. pushing itself: >pushgit pushgit "latest changes" main
+- e.g. pushing itself: 
+- >pushgit pushgit "latest changes" main
 - If arguments are provided, the first argument is treated as the repository name and the second one ist used as the commit message (don't forget to enclose it between "", otherwise every word will be treated as an argument), whereas the third one can be supplied as a branch name, if not using main branch.
 - If no arguments are provided, they will be asked for by the script.
